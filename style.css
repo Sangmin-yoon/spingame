@@ -132,4 +132,30 @@ body {
         padding: 12px 30px;
         font-size: 1rem;
     }
+}
+
+/* 우하단 챗봇 플로팅 버튼 */
+.chatbot-fab {
+    position: fixed;
+    right: 32px;
+    bottom: 32px;
+    z-index: 2000;
+    width: 56px;
+    height: 56px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: box-shadow 0.2s, transform 0.2s;
+    cursor: pointer;
+    text-decoration: none;
+}
+.chatbot-fab:hover {
+    box-shadow: 0 8px 24px rgba(76,175,80,0.25);
+    transform: scale(1.08);
+}
+.chatbot-fab svg {
+    display: block;
 } 
