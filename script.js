@@ -114,12 +114,17 @@ function spinRoulette() {
             isSpinning = false;
             startButton.disabled = false;
 
-            // 실제로 포인터가 가리키는 각도 계산
+            // currentRotation을 0~2PI로 정규화
             let normalizedRotation = currentRotation % (2 * Math.PI);
             if (normalizedRotation < 0) normalizedRotation += 2 * Math.PI;
+
             const anglePerItem = (2 * Math.PI) / items.length;
-            // 포인터가 가리키는 항목의 인덱스 계산 (항목 중앙 기준)
-            const selectedIndex = Math.floor((normalizedRotation + (2 * Math.PI) - anglePerItem / 2) % (2 * Math.PI) / anglePerItem) % items.length;
+            // 포인터가 12시 방향(0도)에서 시작하므로, 중앙에 오도록 -anglePerItem/2 보정
+            const pointerAngle = (2 * Math.PI) - normalizedRotation + anglePerItem / 2;
+            let selectedIndex = Math.floor(pointerAngle / anglePerItem) % items.length;
+            if (selectedIndex < 0) selectedIndex += items.length;
+
+            // 결과 표시
             const result = items[selectedIndex];
             resultDisplay.textContent = `축하합니다! ${result}에 당첨되셨습니다!`;
 
